@@ -9,13 +9,10 @@
 }
 
 .pompidou   { background-image: url(../img/4913713833_8367526e19_o.jpg); }
-.centre     { background-image: url(../img/7813390642_cbba120350_o.jpg); }
 .opera      { background-image: url(../img/7803511582_1c47f1c611_o.jpg); }
 .temple     { background-image: url(../img/6958401123_e6799bb220_o.jpg); }
 .cathedrale { background-image: url(../img/12767852085_121a4e22f3_o.jpg); }
-.plandeau   { background-image: url(../img/7357263054_20984c28d1_o.jpg); }
 .poste      { background-image: url(../img/7803448008_bca53e9760_o.jpg); }
-.mairie     { background-image: url(../img/8384939402_d9902acbb7_o.jpg); }
 
 .container {
     position: absolute;

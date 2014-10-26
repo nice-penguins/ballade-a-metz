@@ -13,13 +13,10 @@ html(lang='en')
 
     body
         .background.pompidou(data-audio="audio/blida.mp3", data-image='img/4913713833_8367526e19_o.jpg')
-        .background.centre(data-audio="audio/cime.mp3", data-image='img/7813390642_cbba120350_o.jpg')
-        .background.opera(data-audio="audio/mcour.mp3", data-image='img/7803511582_1c47f1c611_o.jpg')
-        .background.temple(data-audio="audio/oldhopital.mp3", data-image='img/6958401123_e6799bb220_o.jpg')
+        .background.opera(data-audio="audio/pole.mp3", data-image='img/7803511582_1c47f1c611_o.jpg')
+        .background.temple(data-audio="audio/cime.mp3", data-image='img/6958401123_e6799bb220_o.jpg')
         .background.cathedrale(data-audio="audio/Orgue Cathédrale.mp3", data-image='img/12767852085_121a4e22f3_o.jpg')
-        .background.plandeau(data-audio="audio/pole.mp3", data-image='img/7357263054_20984c28d1_o.jpg')
         .background.poste(data-audio="audio/pref.mp3", data-image='img/7803448008_bca53e9760_o.jpg')
-        .background.mairie(data-audio="audio/saulcy.mp3", data-image='img/8384939402_d9902acbb7_o.jpg')
 
         .container
             .content.keep
@@ -40,11 +37,7 @@ html(lang='en')
 
             .spacer
             .content
-                p Ballade à Metz a pour but d'ajouter une dimension musicale à Metz...
-
-            .spacer
-            .content
-                p ...comme si l'on écoutait la ville.
+                p Ballade à Metz a pour but d'ajouter une dimension musicale à Metz, comme si l'on écoutait la ville.
 
             .spacer
             .content
@@ -52,47 +45,23 @@ html(lang='en')
 
             .spacer
             .content
-                p Chaque lieu important est associé à un thème...
+                p Chaque lieu important est associé à un thème musical dont le volume dépend de la proximité du lieu.
 
             .spacer
             .content
-                p ...que l'on entend d'autant plus fort que l'on se rapproche.
+                p À ces thèmes s'ajoutent des petites mélodies qui correspondent à divers éléments urbains&nbsp;: une boîte postale, un arrêt de bus, un arbre centenaire...
 
             .spacer
             .content
-                p À ces thèmes s'ajoutent des petites mélodies qui sont jouées lorsque l'on passe à proximité d'autres éléments...
+                p Ballade à Metz habille de musique vos déplacements dans la ville  pour mettre en valeur son patrimoine...
 
             .spacer
             .content
-                p ...ici une boîte postale...
+                p ...et faire redécouvrir le plaisir de s'y promener au gré d'une symphonie à chaque fois différente.
 
             .spacer
             .content
-                p ...là un arrêt de bus...
-
-            .spacer
-            .content
-                p ...ou encore un arbre centenaire.
-
-            .spacer
-            .content
-                p Ballade à Metz habille de musique vos déplacements dans la ville...
-
-            .spacer
-            .content
-                p ...pour mettre en valeur son patrimoine...
-
-            .spacer
-            .content
-                p ...et faire redécouvrir le plaisir de s'y promener...
-
-            .spacer
-            .content
-                p ...au gré d'une symphonie à chaque fois différente.
-
-            .spacer
-            .content
-                p Ballade à Metz est le projet proposé par l'équide des 
+                p Ballade à Metz est le projet proposé par l'équipe des 
                     a(href='http://nicepenguins.tumblr.com/', target='blank') Nice Penguins 
                     |(Anthony Guérin,
                     |Baptiste Lesquoy, 
@@ -163,13 +132,10 @@ html(lang='en')
                 p Photos:
                 ul
                     li Le centre Pompidou Metz CC-BY Jean-Pierre Dalbéra
-                    li Metz centre CC-BY-SA  Alexandre Prévot
                     li Opéra Théâtre de Metz Métropole CC-BY-SA  Alexandre Prévot
                     li Metz-05 CC-BY  Azzaddine Amjahed
                     li Saint Etienne à Metz CC-BY Georges De Valkeneer
-                    li Metz CC-BY-SA  christophe demetz
                     li Hôtel des Postes CC-BY-SA  Alexandre Prévot
-                    li METZ CC-BY-SA  christophe demetz
                 p Musiques: Anthony Guérin et Yvan Corsiglia
                 p Design: Quentin Bonnard
 
@@ -193,13 +159,12 @@ html(lang='en')
                     loaded += increment;
                     progressBar.style.width = (100*loaded/toLoad)+"%";
                     if (loaded >= toLoad) {
-                        $(document).scroll(setEnvironment);
                         $('.content,.spacer').each(function(e){$(this).show();});
                         $('.remove').each(function(e){$(this).hide();});
+                        $(document).scroll(setEnvironment);
+                        setEnvironment();
                     }
                 };
-
-
 
                 for (var i = 0; i < bgCount; i++) {
                     audio = document.createElement('audio');

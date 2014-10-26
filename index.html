@@ -15,13 +15,10 @@
   </head>
   <body>
     <div data-audio="audio/blida.mp3" data-image="img/4913713833_8367526e19_o.jpg" class="background pompidou"></div>
-    <div data-audio="audio/cime.mp3" data-image="img/7813390642_cbba120350_o.jpg" class="background centre"></div>
-    <div data-audio="audio/mcour.mp3" data-image="img/7803511582_1c47f1c611_o.jpg" class="background opera"></div>
-    <div data-audio="audio/oldhopital.mp3" data-image="img/6958401123_e6799bb220_o.jpg" class="background temple"></div>
+    <div data-audio="audio/pole.mp3" data-image="img/7803511582_1c47f1c611_o.jpg" class="background opera"></div>
+    <div data-audio="audio/cime.mp3" data-image="img/6958401123_e6799bb220_o.jpg" class="background temple"></div>
     <div data-audio="audio/Orgue Cathédrale.mp3" data-image="img/12767852085_121a4e22f3_o.jpg" class="background cathedrale"></div>
-    <div data-audio="audio/pole.mp3" data-image="img/7357263054_20984c28d1_o.jpg" class="background plandeau"></div>
     <div data-audio="audio/pref.mp3" data-image="img/7803448008_bca53e9760_o.jpg" class="background poste"></div>
-    <div data-audio="audio/saulcy.mp3" data-image="img/8384939402_d9902acbb7_o.jpg" class="background mairie"></div>
     <div class="container">
       <div class="content keep"><img src="img/logo.png" alt="Ballade à Metz" class="img-responsive"/></div>
       <div class="spacer keep remove"></div>
@@ -40,11 +37,7 @@
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>Ballade à Metz a pour but d'ajouter une dimension musicale à Metz...</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>...comme si l'on écoutait la ville.</p>
+        <p>Ballade à Metz a pour but d'ajouter une dimension musicale à Metz, comme si l'on écoutait la ville.</p>
       </div>
       <div class="spacer"></div>
       <div class="content">
@@ -52,47 +45,23 @@
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>Chaque lieu important est associé à un thème...</p>
+        <p>Chaque lieu important est associé à un thème musical dont le volume dépend de la proximité du lieu.</p>
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>...que l'on entend d'autant plus fort que l'on se rapproche.</p>
+        <p>À ces thèmes s'ajoutent des petites mélodies qui correspondent à divers éléments urbains&nbsp;: une boîte postale, un arrêt de bus, un arbre centenaire...</p>
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>À ces thèmes s'ajoutent des petites mélodies qui sont jouées lorsque l'on passe à proximité d'autres éléments...</p>
+        <p>Ballade à Metz habille de musique vos déplacements dans la ville  pour mettre en valeur son patrimoine...</p>
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>...ici une boîte postale...</p>
+        <p>...et faire redécouvrir le plaisir de s'y promener au gré d'une symphonie à chaque fois différente.</p>
       </div>
       <div class="spacer"></div>
       <div class="content">
-        <p>...là un arrêt de bus...</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>...ou encore un arbre centenaire.</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>Ballade à Metz habille de musique vos déplacements dans la ville...</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>...pour mettre en valeur son patrimoine...</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>...et faire redécouvrir le plaisir de s'y promener...</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>...au gré d'une symphonie à chaque fois différente.</p>
-      </div>
-      <div class="spacer"></div>
-      <div class="content">
-        <p>Ballade à Metz est le projet proposé par l'équide des <a href="http://nicepenguins.tumblr.com/" target="blank">Nice Penguins </a>(Anthony Guérin,
+        <p>Ballade à Metz est le projet proposé par l'équipe des <a href="http://nicepenguins.tumblr.com/" target="blank">Nice Penguins </a>(Anthony Guérin,
           Baptiste Lesquoy, <a href="http://quentin.bonnard.eu" target="blank">Quentin Bonnard</a>,
           Jonhathan Lamont,
           Yvan Corsiglia)
@@ -167,13 +136,10 @@
         <p>Photos:</p>
         <ul>
           <li>Le centre Pompidou Metz CC-BY Jean-Pierre Dalbéra</li>
-          <li>Metz centre CC-BY-SA  Alexandre Prévot</li>
           <li>Opéra Théâtre de Metz Métropole CC-BY-SA  Alexandre Prévot</li>
           <li>Metz-05 CC-BY  Azzaddine Amjahed</li>
           <li>Saint Etienne à Metz CC-BY Georges De Valkeneer</li>
-          <li>Metz CC-BY-SA  christophe demetz</li>
           <li>Hôtel des Postes CC-BY-SA  Alexandre Prévot</li>
-          <li>METZ CC-BY-SA  christophe demetz</li>
         </ul>
         <p>Musiques: Anthony Guérin et Yvan Corsiglia</p>
         <p>Design: Quentin Bonnard</p>
@@ -198,13 +164,12 @@
               loaded += increment;
               progressBar.style.width = (100*loaded/toLoad)+"%";
               if (loaded >= toLoad) {
-                  $(document).scroll(setEnvironment);
                   $('.content,.spacer').each(function(e){$(this).show();});
                   $('.remove').each(function(e){$(this).hide();});
+                  $(document).scroll(setEnvironment);
+                  setEnvironment();
               }
           };
-      
-      
       
           for (var i = 0; i < bgCount; i++) {
               audio = document.createElement('audio');
