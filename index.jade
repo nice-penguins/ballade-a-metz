@@ -10,28 +10,26 @@ html(lang='en')
         //if lt IE 9
             script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
             script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+
     body
-        .background.pompidou
-            audio(src="audio/blida.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.centre
-            audio(src="audio/cime.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.opera
-            audio(src="audio/mcour.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.temple
-            audio(src="audio/oldhopital.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.cathedrale
-            audio(src="audio/Orgue Cathédrale.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.plandeau
-            audio(src="audio/pole.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.poste
-            audio(src="audio/pref.mp3" type="audio/mp3" autoplay loop volume='0')
-        .background.mairie
-            audio(src="audio/saulcy.mp3" type="audio/mp3" autoplay loop volume='0')
-        
+        .background.pompidou(data-audio="audio/blida.mp3", data-image='img/4913713833_8367526e19_o.jpg')
+        .background.centre(data-audio="audio/cime.mp3", data-image='img/7813390642_cbba120350_o.jpg')
+        .background.opera(data-audio="audio/mcour.mp3", data-image='img/7803511582_1c47f1c611_o.jpg')
+        .background.temple(data-audio="audio/oldhopital.mp3", data-image='img/6958401123_e6799bb220_o.jpg')
+        .background.cathedrale(data-audio="audio/Orgue Cathédrale.mp3", data-image='img/12767852085_121a4e22f3_o.jpg')
+        .background.plandeau(data-audio="audio/pole.mp3", data-image='img/7357263054_20984c28d1_o.jpg')
+        .background.poste(data-audio="audio/pref.mp3", data-image='img/7803448008_bca53e9760_o.jpg')
+        .background.mairie(data-audio="audio/saulcy.mp3", data-image='img/8384939402_d9902acbb7_o.jpg')
 
         .container
-            .content
+            .content.keep
                 img.img-responsive(src='img/logo.png', alt='Ballade à Metz')
+
+            .spacer.keep.remove
+            .content.keep.remove
+                p.text-center Chargement en cours...
+                .progress
+                    #progress.progress-bar.progress-bar-info(role="progressbar" aria-valuemin="0" aria-valuemax="100")
 
             .spacer
             .content
@@ -162,8 +160,7 @@ html(lang='en')
 
             .spacer
             .content
-                ul Musiques Anthony Guérin et Yvan Corsiglia
-                p Crédits photos:
+                p Photos:
                 ul
                     li Le centre Pompidou Metz CC-BY Jean-Pierre Dalbéra
                     li Metz centre CC-BY-SA  Alexandre Prévot
@@ -173,24 +170,73 @@ html(lang='en')
                     li Metz CC-BY-SA  christophe demetz
                     li Hôtel des Postes CC-BY-SA  Alexandre Prévot
                     li METZ CC-BY-SA  christophe demetz
+                p Musiques: Anthony Guérin et Yvan Corsiglia
+                p Design: Quentin Bonnard
 
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+            .spacer
+
+        script(src='js/jquery.min.js')
         script(src='js/bootstrap.min.js')
         script.
-            function setEnvironment() {
-                var maxScroll = document.body.scrollHeight-document.body.clientHeight;
-                var scrollRatio = document.body.scrollTop / maxScroll;
+            $(document).ready(function() {
+                $('.content:not(.keep),.spacer:not(.keep)').each(function(e){$(this).hide(0);});
+
                 var backgrounds = document.getElementsByClassName('background');
                 var bgCount = backgrounds.length;
+
+                var audioWeight=1;
+                var imageWeight=1;
+                var toLoad = bgCount*(imageWeight+audioWeight);
+                var loaded = 0;
+                var progressBar = document.getElementById('progress');
+                function updateProgressBar(increment) {
+                    loaded += increment;
+                    progressBar.style.width = (100*loaded/toLoad)+"%";
+                    if (loaded >= toLoad) {
+                        $(document).scroll(setEnvironment);
+                        $('.content,.spacer').each(function(e){$(this).show();});
+                        $('.remove').each(function(e){$(this).hide();});
+                    }
+                };
+
+
+
                 for (var i = 0; i < bgCount; i++) {
-                    var x = scrollRatio*(bgCount-1);
-                    var density = -1*(x-(i+1))*(x-(i-1));
-                    density = Math.max(0,density);
-                    density = Math.min(1,density);
-                    backgrounds[i].getElementsByTagName('audio')[0].volume = density;
-                    backgrounds[i].style.opacity = density;
-                }
-            };
-            $(document).scroll(setEnvironment);
-            $(document).ready(setEnvironment);
+                    audio = document.createElement('audio');
+                    audio.src = backgrounds[i].getAttribute('data-audio');
+                    audio.volume = 0;
+                    audio.loop=true;
+                    //audio.type="audio/mp3"
+                    audio.play()
+
+                    function audioLoaded() {
+                        if (typeof this.alreadyLoaded === "undefined") {
+                            this.alreadyLoaded = true;
+                            updateProgressBar(audioWeight);
+                        }
+                    }
+                    audio.addEventListener('canplaythrough', audioLoaded);
+                    backgrounds[i].appendChild(audio);
+
+                    img = document.createElement('img');
+                    img.src = backgrounds[i].getAttribute('data-image');
+                    
+                    img.addEventListener('load', function () {updateProgressBar(imageWeight);});
+                    img.style.display='none';
+                    backgrounds[i].appendChild(img);
+                };
+
+                function setEnvironment() {
+                    var maxScroll = document.body.scrollHeight-document.body.clientHeight;
+                    var scrollRatio = document.body.scrollTop / maxScroll;
+                    for (var i = 0; i < bgCount; i++) {
+                        var x = scrollRatio*(bgCount-1);
+                        var density = -1*(x-(i+1))*(x-(i-1));
+                        density = Math.max(0,density);
+                        density = Math.min(1,density);
+                        backgrounds[i].style.opacity = density;
+                        backgrounds[i].getElementsByTagName('audio')[0].volume = density;
+                    }
+                };
+            });
 
