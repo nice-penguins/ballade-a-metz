@@ -27,7 +27,8 @@
     overflow: hidden;
     margin: auto;
     max-width: 300px;
-    border-radius: 5px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px #fff;
 }
 
 .content p {
@@ -35,6 +36,13 @@
     font-size: 16px;
     text-align: justify;
 }
+
+.l   { margin-left:  25%; }
+.ll  { margin-left:  10%; }
+.lll { margin-left:   0%; }
+.rrr { margin-right:  0%; }
+.rr  { margin-right: 10%; }
+.r   { margin-right: 25%; }
 
 html, body, .container { height: 100%; }
 .spacer {
