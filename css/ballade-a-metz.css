@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('JosefinSans.woff') format('woff'),
+       url('JosefinSans.ttf')  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('JosefinSans-Bold.woff') format('woff'),
+       url('JosefinSans-Bold.ttf')  format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 .background {
     position: fixed;
     top: 0;
@@ -21,6 +37,7 @@
 }
 
 .content {
+    font-family: 'JosefinSans', sans-serif;
     padding: 16px;
     background: white;
     background: rgba(255,255,255,.9);
