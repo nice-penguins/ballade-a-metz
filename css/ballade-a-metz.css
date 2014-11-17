@@ -24,6 +24,7 @@
     background-size: cover;
 }
 
+.pompidou   { background-image: url(../img/pompidou.jpg);            }
 .cathedrale { background-image: url(../img/cathedrale.jpg);          }
 .moselle    { background-image: url(../img/moselle.jpg);             }
 .porte      { background-image: url(../img/porte-des-allemands.jpg); }
