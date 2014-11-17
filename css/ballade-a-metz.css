@@ -54,6 +54,10 @@
     text-align: justify;
 }
 
+.content h1 {
+    text-align: center;
+}
+
 .l   { margin-left:  25%; }
 .ll  { margin-left:  10%; }
 .lll { margin-left:   0%; }
