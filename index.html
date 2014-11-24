@@ -14,12 +14,12 @@
     -->
   </head>
   <body>
-    <div data-audio="audio/mcour.mp3" data-image="img/pompidou.jpg" class="background pompidou"></div>
-    <div data-audio="audio/blida.mp3" data-image="img/moselle.jpg" class="background moselle"></div>
-    <div data-audio="audio/pole.mp3" data-image="img/porte-des-allemands.jpg" class="background porte"></div>
-    <div data-audio="audio/pref.mp3" data-image="img/temple.jpg" class="background temple"></div>
-    <div data-audio="audio/cime.mp3" data-image="img/plan-d-eau.jpg" class="background plandeau"></div>
-    <div data-audio="audio/orgue.mp3" data-image="img/cathedrale.jpg" class="background cathedrale"></div>
+    <div data-audio="mcour" data-image="img/pompidou.jpg" class="background pompidou"></div>
+    <div data-audio="blida" data-image="img/moselle.jpg" class="background moselle"></div>
+    <div data-audio="pole" data-image="img/porte-des-allemands.jpg" class="background porte"></div>
+    <div data-audio="pref" data-image="img/temple.jpg" class="background temple"></div>
+    <div data-audio="cime" data-image="img/plan-d-eau.jpg" class="background plandeau"></div>
+    <div data-audio="orgue" data-image="img/cathedrale.jpg" class="background cathedrale"></div>
     <div class="overlay"></div>
     <div class="container">
       <div class="content keep"><img src="img/logo.png" alt="Ballade à Metz" class="img-responsive center-block"/></div>
@@ -110,7 +110,7 @@
           var backgrounds = document.getElementsByClassName('background');
           var bgCount = backgrounds.length;
       
-          var audioWeight=1;
+          var audioWeight=2;
           var imageWeight=1;
           var toLoad = bgCount*(imageWeight+audioWeight);
           var loaded = 0;
@@ -128,25 +128,35 @@
       
           for (var i = 0; i < bgCount; i++) {
               audio = document.createElement('audio');
-              audio.src = backgrounds[i].getAttribute('data-audio');
+              audioName = backgrounds[i].getAttribute('data-audio');
+      
+              oggSource = document.createElement('source');
+              oggSource.src = 'audio/'+audioName+'.ogg';
+              audio.appendChild(oggSource);
+      
+              mp3Source = document.createElement('source');
+              mp3Source.src = 'audio/'+audioName+'.mp3';
+              audio.appendChild(mp3Source);
+      
               audio.volume = 0;
               audio.loop=true;
-              //audio.type="audio/mp3"
               audio.play()
       
-              function audioLoaded() {
+              audio.addEventListener('canplaythrough', function () {
                   if (typeof this.alreadyLoaded === "undefined") {
                       this.alreadyLoaded = true;
                       updateProgressBar(audioWeight);
                   }
               }
-              audio.addEventListener('canplaythrough', audioLoaded);
+              );
               backgrounds[i].appendChild(audio);
       
               img = document.createElement('img');
               img.src = backgrounds[i].getAttribute('data-image');
               
-              img.addEventListener('load', function () {updateProgressBar(imageWeight);});
+              img.addEventListener('load', function () {
+                  updateProgressBar(imageWeight);
+              });
               img.style.display='none';
               backgrounds[i].appendChild(img);
           };
@@ -164,6 +174,7 @@
               }
           };
       });
+      
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
